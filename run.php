@@ -2,8 +2,10 @@
 session_start();
 set_time_limit(0);
 error_reporting(0);
-$refcode = $_GET['refcode'];
-$jml = $_GET['jml'];
+echo "\033[1;36mMasukkan refcode oona : ";
+$refcode = trim(fgets(STDIN));
+echo "\033[1;36mMasukkan jml x : ";
+$jml = trim(fgets(STDIN));
 include 'Signature.php';
 	if(isset($refcode))
 	{
