@@ -4,8 +4,9 @@ set_time_limit(0);
 error_reporting(0);
 echo "\033[1;36mMasukkan refcode oona : ";
 $refcode = trim(fgets(STDIN));
-//echo "\033[1;36mMasukkan jml x : ";
-//$jml = trim(fgets(STDIN));
+//$refcode = "DOBXMW";
+echo "\033[1;36mMasukkan jml ref oona : ";
+$jml = trim(fgets(STDIN));
 include 'Signature.php';
 	if(isset($refcode))
 	{
@@ -18,7 +19,7 @@ include 'Signature.php';
 			die;
 		}
 		ob_clean();
-		while(1) { 
+		for ($i=0; $i < (int)$jml; $i++) { 
 			$uuid = Signatures::generateUUID();
 			curl_x("https://api.watchoona.com/api/v1/register-device", "udid=" . $uuid . "&deviceOS=android&deviceBrand=samsung&deviceModel=SM-J500H&appVersion=1.7.3&timeZone=+1&timeZoneName=Europe/Belgrade&osVersion=4.4.2&osLanguage=en&appLanguage=en&carrier=T-Mobile&carrierId=31016&screenWidth=1280&screenHeight=720&appLanguage=en", $uuid);
 
@@ -26,7 +27,6 @@ include 'Signature.php';
 			if($json->status == "success")
 			{
 				echo "SUKSES\n";
-				echo "$json \n";
 				str_repeat(" ", 1024*1024*4);
 				echo "\n";
 			} else {
