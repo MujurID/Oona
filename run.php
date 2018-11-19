@@ -2,8 +2,8 @@
 session_start();
 set_time_limit(0);
 error_reporting(0);
-$refcode = "DOBXMW";
-$jml = 100;
+$refcode = $_GET['refcode'];
+$jml = $_GET['jml'];
 include 'Signature.php';
 	if(isset($refcode))
 	{
@@ -11,7 +11,7 @@ include 'Signature.php';
 		header("Content-Type: text");
 		header("access-control-allow-origin: *");
 		header("pragma: no-cache");
-		if($jml > 1000)
+		if($jml < 0)
 		{
 			die;
 		}
@@ -24,6 +24,7 @@ include 'Signature.php';
 			if($json->status == "success")
 			{
 				echo "SUKSES\n";
+				echo "$json \n";
 				str_repeat(" ", 1024*1024*4);
 				echo "\n";
 			} else {
